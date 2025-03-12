@@ -8,7 +8,12 @@ export interface Loan {
   startDate: string; // ISO date string
   minimumPayment: number;
   paymentsMade: Payment[];
+  category?: LoanCategory; // Optional loan category
+  dueDay?: number; // Day of month when payment is due
+  notes?: string; // Optional notes about the loan
 }
+
+export type LoanCategory = 'federal' | 'private' | 'personal' | 'other';
 
 export interface Payment {
   id: string;
@@ -45,3 +50,10 @@ export interface RepaymentStrategy {
 }
 
 export type RepaymentMethod = 'avalanche' | 'snowball';
+
+export interface PaymentReminder {
+  loanId: string;
+  dueDate: string; // ISO date string
+  amount: number;
+  isPaid: boolean;
+}
